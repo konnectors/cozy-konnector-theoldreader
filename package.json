@@ -21,7 +21,7 @@
     "standalone": "cozy-konnector-standalone",
     "build": "webpack",
     "lint": "standard --fix konnector.js",
-    "deploy:travis": "git-directory-deploy --username <YOUR_GH_USERNAME> --email <YOUR_EMAIL> --directory build/ --repo=https://$GITHUB_TOKEN@github.com/<USERNAME_GH>/<SLUG_GH>.git",
+    "deploy:travis": "git-directory-deploy --username laedit --email $EMAIL --directory build/ --repo=https://$GITHUB_TOKEN@github.com/laedit/cozy-konnector-theoldreader.git",
     "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/laedit/cozy-konnector-theoldreader.git"
   },
   "devDependencies": {
