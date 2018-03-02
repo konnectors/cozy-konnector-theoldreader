@@ -28,4 +28,4 @@ cache:
 script:
 - yarn build
 after_success:
-- [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] && yarn run deploy:travis --branch=build
+- test "$TRAVIS_BRANCH" = "master" && test "$TRAVIS_PULL_REQUEST" = "false" && yarn run deploy:travis --branch=build
