@@ -13,7 +13,7 @@
     "babel-eslint": "8.2.2",
     "cozy-konnector-libs": "3.5.1",
     "html-pdf": "2.2.0",
-    "standard": "10.0.3"
+    "standard": "11.0.0"
   },
   "scripts": {
     "start": "node index.js",
