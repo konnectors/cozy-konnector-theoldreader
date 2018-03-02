@@ -25,7 +25,7 @@
     "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/laedit/cozy-konnector-theoldreader.git"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "4.4.2",
+    "copy-webpack-plugin": "4.5.0",
     "git-directory-deploy": "1.5.1",
     "webpack": "3.11.0"
   }
