@@ -1,6 +1,8 @@
 [Cozy][cozy] The Old Reader
 =======================================
 
+[![Build Status](https://www.travis-ci.org/laedit/cozy-konnector-theoldreader.svg?branch=master)](https://www.travis-ci.org/laedit/cozy-konnector-theoldreader)
+
 What's Cozy?
 ------------
 
