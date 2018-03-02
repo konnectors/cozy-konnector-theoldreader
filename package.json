@@ -7,26 +7,31 @@
     "url": "git+https://github.com/laedit/cozy-konnector-theoldreader.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "laedit",
   "license": "AGPL-3.0",
   "dependencies": {
-    "babel-eslint": "8.2.2",
     "cozy-konnector-libs": "3.5.2",
     "html-pdf": "2.2.0",
     "standard": "11.0.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "cozy-konnector-dev",
-    "standalone": "cozy-konnector-standalone",
+    "start": "tsc && node index.js",
+    "dev": "tsc && cozy-konnector-dev",
+    "standalone": "tsc && cozy-konnector-standalone",
     "build": "webpack",
     "lint": "standard --fix konnector.js",
     "deploy:travis": "git-directory-deploy --username laedit --email $EMAIL --directory build/ --repo=https://$GITHUB_TOKEN@github.com/laedit/cozy-konnector-theoldreader.git",
     "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/laedit/cozy-konnector-theoldreader.git"
   },
   "devDependencies": {
+    "@types/bluebird": "3.5.20",
+    "@types/cheerio": "0.22.7",
+    "@types/html-pdf": "2.1.2",
+    "@types/moment": "2.13.0",
     "copy-webpack-plugin": "4.5.0",
     "git-directory-deploy": "1.5.1",
+    "ts-loader": "4.0.0",
+    "typescript": "2.7.2",
     "webpack": "4.0.1",
     "webpack-cli": "2.0.10"
   }

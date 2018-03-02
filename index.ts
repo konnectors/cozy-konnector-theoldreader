@@ -1,18 +1,18 @@
-"use strict";
+import * as path from "path";
+import { ReadStream } from "fs";
+import * as moment from "moment";
+import * as pdf from "html-pdf";
+import * as bluebird from "bluebird";
 
-const {
+import {
   BaseKonnector,
   requestFactory,
-  saveBills,
+  // saveBills,
   log,
-  next,
   cozyClient
-} = require("cozy-konnector-libs");
-const moment = require("moment");
-const pdf = require("html-pdf");
-const bluebird = require("bluebird");
-const path = require("path");
-const requestBase = requestFactory({
+} from "cozy-konnector-libs";
+
+const requestBase: any = requestFactory({
   method: "GET",
   cheerio: true,
   jar: true,
@@ -23,26 +23,26 @@ const requestBase = requestFactory({
   followAllRedirects: true
 });
 
-const baseUrl = "https://theoldreader.com";
+const baseUrl: string = "https://theoldreader.com";
 
 module.exports = new BaseKonnector(start);
 
 // The start function is run by the BaseKonnector instance only when it got all the account
 // information (fields). When you run this connector yourself in "standalone" mode or "dev" mode,
 // the account information come from ./konnector-dev-config.json file
-function start(fields) {
+function start(fields: any): Promise<any> {
   // The BaseKonnector instance expects a Promise as return of the function
   return requestBase(baseUrl)
-    .then($ => {
+    .then(($: CheerioAPI) => {
       log("debug", "Getting csrf param");
       return {
         name: $("meta[name=csrf-param]").attr("content"),
         token: $("meta[name=csrf-token]").attr("content")
       };
     })
-    .then(csrf => {
+    .then((csrf: any) => {
       log("debug", "Login");
-      const formData = {
+      const formData: any = {
         commit: "Sign In",
         "user[login]": fields.login,
         "user[password]": fields.password
@@ -56,27 +56,27 @@ function start(fields) {
         simple: false
       });
     })
-    .then($ => {
-      const signInElement = $("a[href='/users/sign_in']");
+    .then(($: CheerioAPI) => {
+      const signInElement: Cheerio = $("a[href='/users/sign_in']");
       if (signInElement.length > 0) {
         log("error", "Signin failed");
         throw new Error("LOGIN_FAILED");
       }
       return requestBase({ url: `${baseUrl}/accounts/-/edit` });
     })
-    .then($ => {
+    .then(($: CheerioAPI) => {
       log("debug", "Parsing receipts");
 
       return Array.from($(".payment-info > table > tbody > tr")).map(entry => {
-        const currentLine = $(entry);
-        const entryProperties = currentLine.children();
-        const billDate = moment.utc(
+        const currentLine: Cheerio = $(entry);
+        const entryProperties: Cheerio = currentLine.children();
+        const billDate: moment.Moment = moment.utc(
           $(entryProperties[0]).text(),
           "MMMM DD, YYYY"
         );
-        // log("debug", currentLine);
-        const billUrl = parseBillUrl(entryProperties[2], $);
-        const billId = getBillId(billUrl);
+
+        const billUrl: string = parseBillUrl(entryProperties[2], $);
+        const billId: string = getBillId(billUrl);
         return {
           amount: normalizeAmount($(entryProperties[1]).text()),
           fileurl: `${baseUrl}${billUrl}`,
@@ -89,80 +89,93 @@ function start(fields) {
       });
     })
     .mapSeries(getPdfStream)
-    .then(bills => {
+    .then((bills: Array<any>) => {
       log("debug", bills, "bills");
 
-      return saveBillsHack(bills, fields.folderPath, {
+      return saveBillsHack(bills, fields.folderPath/*, {
         timeout: Date.now() + 60 * 1000,
         identifiers: "theoldreader" // bank operation identifier
-      });
+      }*/);
     });
 }
 
-function getPdfStream(bill) {
+function getPdfStream(bill: any): Promise<any> {
   log("debug", `getting invoice: ${bill.fileurl}`);
 
   return requestBase({ url: bill.fileurl })
-    .then($ => {
+    .then(($: CheerioAPI) => {
       log("debug", `invoice downloaded`);
-      $("img[alt=Logo]").attr("src", path.join("file://", __dirname, "assets/logo.png"));
-      $("link[rel=stylesheet]").attr("href", path.join("file://", __dirname, "assets/style.css"));
+      $("img[alt=Logo]").attr(
+        "src",
+        path.join("file://", __dirname, "assets/logo.png")
+      );
+      $("link[rel=stylesheet]").attr(
+        "href",
+        path.join("file://", __dirname, "assets/style.css")
+      );
 
       return bluebird.fromCallback(cb => {
         pdf.create($.html()).toStream(cb);
       });
     })
-    .then(pdfStream => {
+    .then((pdfStream: ReadStream) => {
       bill.filestream = pdfStream;
       log("debug", `invoice ${bill.id} streamed!`);
       delete bill.fileurl;
       return bill;
     })
-    .catch(err => log("error", err));
+    .catch((err: Error) => log("error", err));
 }
 
-function parseBillUrl(tr, $) {
+function parseBillUrl(tr: CheerioElement, $: CheerioAPI): string {
   return $(tr)
     .children("a")
     .attr("href");
 }
 
-function getBillId(billUrl) {
-  const billIdParamName = "invoice_id";
-  const startIndex =
+function getBillId(billUrl: string): string {
+  const billIdParamName: string = "invoice_id";
+  const startIndex: number =
     billUrl.indexOf(billIdParamName) + billIdParamName.length + 1;
-  const endIndex = billUrl.indexOf("&", startIndex);
+  const endIndex: number = billUrl.indexOf("&", startIndex);
   return billUrl.substring(startIndex, endIndex === -1 ? undefined : endIndex);
 }
 
-function normalizeAmount(amount) {
+function normalizeAmount(amount: string): number {
   return parseFloat(amount.replace("$", "").trim());
 }
 
-function getFileName(entryDate, entryId) {
+function getFileName(entryDate: moment.Moment, entryId: string): string {
   return `${entryDate.format("YYYY_MM_DD")}_${entryId}_TheOldReader.pdf`;
 }
 
 // Waiting for https://github.com/cozy/cozy-konnector-libs/issues/90
-function saveBillsHack(entries, fields, options = {}) {
+function saveBillsHack(
+  entries: Array<any>,
+  fields: object,
+  // options: object = {}
+): Promise<void> | bluebird<any[]> {
   log("debug", "save bills");
 
-  if (entries.length === 0) return Promise.resolve();
+  if (entries.length === 0) {
+    return Promise.resolve();
+  }
 
   if (typeof fields === "string") {
     fields = { folderPath: fields };
   }
 
-  return bluebird.mapSeries(entries, entry => saveEntry(entry, fields))
-  .catch(err => {
-    log("error", err);
-    throw err;
-  });
+  return bluebird
+    .mapSeries(entries, entry => saveEntry(entry, fields))
+    .catch((err: Error) => {
+      log("error", err);
+      throw err;
+    });
 }
 
-function saveEntry(entry, fields) {
-  return cozyClient.files.statByPath(fields.folderPath).then(folder => {
-    const createFileOptions = {
+function saveEntry(entry: any, fields: any): any {
+  return cozyClient.files.statByPath(fields.folderPath).then((folder: any) => {
+    const createFileOptions: any = {
       name: entry.filename,
       dirID: folder._id
     };
