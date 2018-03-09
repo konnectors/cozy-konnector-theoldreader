@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "build"),
-    filename: "konnector.js"
+    filename: "index.js"
   },
   plugins: [
     new CopyPlugin([
