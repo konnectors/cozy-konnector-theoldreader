@@ -7,9 +7,8 @@ import * as bluebird from "bluebird";
 import {
   BaseKonnector,
   requestFactory,
-  // saveBills,
-  log,
-  cozyClient
+  saveBills,
+  log
 } from "cozy-konnector-libs";
 
 const requestBase: any = requestFactory({
@@ -92,10 +91,10 @@ function start(fields: any): Promise<any> {
     .then((bills: Array<any>) => {
       log("debug", bills, "bills");
 
-      return saveBillsHack(bills, fields.folderPath/*, {
+      return saveBills(bills, fields.folderPath, {
         timeout: Date.now() + 60 * 1000,
         identifiers: "theoldreader" // bank operation identifier
-      }*/);
+      });
     });
 }
 
@@ -147,38 +146,4 @@ function normalizeAmount(amount: string): number {
 
 function getFileName(entryDate: moment.Moment, entryId: string): string {
   return `${entryDate.format("YYYY_MM_DD")}_${entryId}_TheOldReader.pdf`;
-}
-
-// Waiting for https://github.com/cozy/cozy-konnector-libs/issues/90
-function saveBillsHack(
-  entries: Array<any>,
-  fields: object,
-  // options: object = {}
-): Promise<void> | bluebird<any[]> {
-  log("debug", "save bills");
-
-  if (entries.length === 0) {
-    return Promise.resolve();
-  }
-
-  if (typeof fields === "string") {
-    fields = { folderPath: fields };
-  }
-
-  return bluebird
-    .mapSeries(entries, entry => saveEntry(entry, fields))
-    .catch((err: Error) => {
-      log("error", err);
-      throw err;
-    });
-}
-
-function saveEntry(entry: any, fields: any): any {
-  return cozyClient.files.statByPath(fields.folderPath).then((folder: any) => {
-    const createFileOptions: any = {
-      name: entry.filename,
-      dirID: folder._id
-    };
-    return cozyClient.files.create(entry.filestream, createFileOptions);
-  });
 }
