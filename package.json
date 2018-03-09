@@ -28,7 +28,7 @@
     "@types/cheerio": "0.22.7",
     "@types/html-pdf": "2.1.2",
     "@types/moment": "2.13.0",
-    "copy-webpack-plugin": "4.5.0",
+    "copy-webpack-plugin": "4.5.1",
     "git-directory-deploy": "1.5.1",
     "ts-loader": "4.0.1",
     "typescript": "2.7.2",
