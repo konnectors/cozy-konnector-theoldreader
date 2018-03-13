@@ -1,8 +1,6 @@
-import * as path from "path";
-import { ReadStream } from "fs";
+import * as fs from "fs";
 import * as moment from "moment";
-import * as pdf from "html-pdf";
-import * as bluebird from "bluebird";
+import * as pdf from "pdfjs";
 
 import {
   BaseKonnector,
@@ -89,8 +87,6 @@ function start(fields: any): Promise<any> {
     })
     .mapSeries(getPdfStream)
     .then((bills: Array<any>) => {
-      log("debug", bills, "bills");
-
       return saveBills(bills, fields.folderPath, {
         timeout: Date.now() + 60 * 1000,
         identifiers: "theoldreader" // bank operation identifier
@@ -104,26 +100,23 @@ function getPdfStream(bill: any): Promise<any> {
   return requestBase({ url: bill.fileurl })
     .then(($: CheerioAPI) => {
       log("debug", `invoice downloaded`);
-      $("img[alt=Logo]").attr(
-        "src",
-        path.join("file://", __dirname, "assets/logo.png")
-      );
-      $("link[rel=stylesheet]").attr(
-        "href",
-        path.join("file://", __dirname, "assets/style.css")
-      );
 
-      return bluebird.fromCallback(cb => {
-        pdf.create($.html()).toStream(cb);
-      });
+      const billData: CheerioElement[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
+
+      return generatePDF(
+        bill.id,
+        $(".container > .row > .col-md-12 > strong")[0].next.nodeValue.trim(),
+        billData[0].firstChild.nodeValue.trim().replace(/\r?\n|\r/g, "").replace(/\s{2,}/g, " "),
+        billData[1].firstChild.nodeValue.trim(),
+        billData[2].firstChild.nodeValue.trim()
+      );
     })
-    .then((pdfStream: ReadStream) => {
+    .then((pdfStream: fs.ReadStream) => {
       bill.filestream = pdfStream;
-      log("debug", `invoice ${bill.id} streamed!`);
       delete bill.fileurl;
       return bill;
     })
-    .catch((err: Error) => log("error", err));
+    .catch((err: Error) => log("PDF generation error", err));
 }
 
 function parseBillUrl(tr: CheerioElement, $: CheerioAPI): string {
@@ -146,4 +139,64 @@ function normalizeAmount(amount: string): number {
 
 function getFileName(entryDate: moment.Moment, entryId: string): string {
   return `${entryDate.format("YYYY_MM_DD")}_${entryId}_TheOldReader.pdf`;
+}
+
+function generatePDF(invoidID: string, account: string, item: string, date: string, amount: string): fs.ReadStream {
+  const helveticaFont: any = new pdf.Font(require("pdfjs/font/Helvetica.json"));
+  const helveticaBoldFont: any = new pdf.Font(
+    require("pdfjs/font/Helvetica-Bold.json")
+  );
+
+  const src: Buffer = fs.readFileSync("tor-logo.jpg");
+  const logo: any = new pdf.Image(src);
+
+  var doc: any = new pdf.Document({ font: helveticaFont });
+
+  doc.cell({ paddingBottom: 0.5 * pdf.cm }).image(logo, { width: 150 });
+  doc
+    .cell({ paddingBottom: 0.5 * pdf.cm })
+    .text()
+    .add("Receipt", { font: helveticaBoldFont, fontSize: 14 })
+    .br()
+    .add("The Old Reader, Inc.")
+    .br()
+    .add("https://theoldreader.com", {
+      underline: true,
+      color: 0x569cd6
+    })
+    .br()
+    .add(`Invoice ID: ${invoidID}`);
+
+  doc
+    .cell({ paddingBottom: 0.5 * pdf.cm })
+    .text()
+    .add("Account: ", { font: helveticaBoldFont })
+    .add(account);
+
+  var table: any = doc.table({
+    widths: ["*", "*", "*"],
+    borderWidth: 1,
+    padding: 5
+  });
+
+  var trHead: any = table.header({
+    font: helveticaBoldFont,
+    borderBottomWidth: 1.5
+  });
+  trHead.cell("Item");
+  trHead.cell("Date");
+  trHead.cell("Amount");
+
+  var tr: any = table.row();
+  tr.cell(item);
+  tr.cell(date, { textAlign: "right" });
+  tr.cell(amount, { textAlign: "right" });
+
+  doc
+    .cell({ paddingTop: 0.5 * pdf.cm })
+    .text("Thank you!", { font: helveticaBoldFont });
+
+  doc.end();
+
+  return doc;
 }
