@@ -10,7 +10,7 @@
   "author": "laedit",
   "license": "AGPL-3.0",
   "dependencies": {
-    "cozy-konnector-libs": "3.6.0",
+    "cozy-konnector-libs": "3.7.0",
     "html-pdf": "2.2.0",
     "standard": "11.0.0"
   },
