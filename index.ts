@@ -81,7 +81,8 @@ function start(fields: any): Promise<any> {
           type: "service",
           vendor: "The Old Reader",
           filename: getFileName(billDate, billId),
-          id: billId
+          id: billId,
+          currency: "USD"
         };
       });
     })
