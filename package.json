@@ -11,7 +11,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "cozy-konnector-libs": "3.6.0",
-    "html-pdf": "2.2.0",
+    "pdfjs": "^2.0.0-alpha.3",
     "standard": "11.0.0"
   },
   "scripts": {
@@ -26,7 +26,6 @@
   "devDependencies": {
     "@types/bluebird": "3.5.20",
     "@types/cheerio": "0.22.7",
-    "@types/html-pdf": "2.1.2",
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "4.5.1",
     "git-directory-deploy": "1.5.1",
