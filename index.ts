@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
+import * as connection from "cozy-konnector-connection/connection.js";
 
 import {
   BaseKonnector,
@@ -29,38 +30,11 @@ module.exports = new BaseKonnector(start);
 // the account information come from ./konnector-dev-config.json file
 function start(fields: any): Promise<any> {
   // The BaseKonnector instance expects a Promise as return of the function
-  return requestBase(baseUrl)
-    .then(($: CheerioAPI) => {
-      log("debug", "Getting csrf param");
-      return {
-        name: $("meta[name=csrf-param]").attr("content"),
-        token: $("meta[name=csrf-token]").attr("content")
-      };
-    })
-    .then((csrf: any) => {
-      log("debug", "Login");
-      const formData: any = {
-        commit: "Sign In",
-        "user[login]": fields.login,
-        "user[password]": fields.password
-      };
-      formData[`${csrf.name}`] = csrf.token;
-
-      return requestBase({
-        url: `${baseUrl}/users/sign_in`,
-        method: "POST",
-        form: formData,
-        simple: false
-      });
-    })
-    .then(($: CheerioAPI) => {
-      const signInElement: Cheerio = $("a[href='/users/sign_in']");
-      if (signInElement.length > 0) {
-        log("error", "Signin failed");
-        throw new Error("LOGIN_FAILED");
-      }
-      return requestBase({ url: `${baseUrl}/accounts/-/edit` });
-    })
+  return connection.init(baseUrl, "users/sign_in", "#new_user",
+          { "user[login]": fields.login, "user[password]": fields.password },
+          "cheerio",
+          (statusCode, $) => statusCode === 200 && $("a[href='/users/sign_in']").length === 0)
+    .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
     .then(($: CheerioAPI) => {
       log("debug", "Parsing receipts");
 
