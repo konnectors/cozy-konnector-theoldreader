@@ -10,6 +10,7 @@
   "author": "laedit",
   "license": "AGPL-3.0",
   "dependencies": {
+    "cozy-konnector-connection": "carrieje/cozy-konnector-connection",
     "cozy-konnector-libs": "3.6.0",
     "pdfjs": "2.0.0-alpha.3",
     "standard": "11.0.0"
