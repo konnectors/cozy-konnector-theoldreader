@@ -12,7 +12,7 @@
   "dependencies": {
     "cozy-konnector-connection": "carrieje/cozy-konnector-connection",
     "cozy-konnector-libs": "3.7.4",
-    "pdfjs": "2.0.0-alpha.4",
+    "pdfjs": "2.0.0-alpha.5",
     "standard": "11.0.1"
   },
   "scripts": {
