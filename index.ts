@@ -135,9 +135,10 @@ function generatePDF(invoidID: string, account: string, item: string, date: stri
     .br()
     .add("The Old Reader, Inc.")
     .br()
-    .add("https://theoldreader.com", {
+    .add("theoldreader.com", {
       underline: true,
-      color: 0x569cd6
+      color: 0x569cd6,
+      link: "https://theoldreader.com"
     })
     .br()
     .add(`Invoice ID: ${invoidID}`);
