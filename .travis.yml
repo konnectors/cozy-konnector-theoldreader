@@ -8,24 +8,25 @@ branches:
   - build
 env:
   global:
-  - CXX=g++-4.8
-  # GITHUB_TOKEN
-  - secure: 4Y+VZc3ZdMtLAuqVz14u4UZIYUrfjFQ7q5SKbtp10rfl7ofwVFuivK551ltY49+tGYbc3oHQJLvHsFgQaPdCc5CkDctivW+BDk+HQy2ZLKDXDb8xRDMLXPFsMtmp6kbg3hfjDJoiKnp8pHgtXNVpR2LqczaNwMyU2h3eMLxAPtUlvsdqtXjlp5LbRBDpP9JF6tTD961uOVFhDNdBtlwsAC17C08zwuTDZMrKWTsxp6EvsxdyYfNTQw7sAsCxVXjxtywKUz6RSTqySLf2zw8klqh0Fb32/YN9v+zWFYQQRBnAxiirUq7K7kRnFH9i6d51TIZdidi3b2JW8tAC3UBZ68X/QMxCaNJISRABSyVe6cLbiVtf7SV568KsySa30UspY+xVE1kt3eMkETs8r6uptsVauQ9cpaxHQdJtf6VzBctbn35cf0/Fq9DPqjBDwjYmb5K8YEbS5HVbyn08BI1YA/VmtP2qWereJwYDhsVLBkXnIS0TM50NMONN5Bkc0nQFr/pmGBzIfWFfvwySJG8CfuL370RjNBaXnntiaKTKD4PGNt63JyEXwNj/oGJQSiYFB8OlFFvPqH2aXjthexHWS4pGqcZNTy+O5Od3oe6DyoIb8OAqJ0J6hUIGtH6o7ZKEoXcmYg2eQvN9LLeE1jv6IGdfoExOha+dBZXwszSZMvo=
-  # EMAIL
-  - secure: QRFOflDJ6CtFqKvd/Rm8CPIkh59XKYzZbuD82EiH42xgXlUzKqJJH3CS5+vM/1ff74If3xTouuaNNBoDrUZBCLSbm96Pfb7XRifgT9qEY1GAu2ZeX6JgqBZ3MnmAH/fqWpQrvoiyyuAO6OXey2f261WIu6DCOgAGn1NWpWFOWwuqayWaZtF9IlT5Q9tNntrvBC3lTUjs9MBf41bKMIS/5oGgOuLK+GjG+aNDaYEtj2s9z7+5swf2ImzNfvgZpeUYam/hycScDCkH8uOE+3TtEDYc+2970QmXsB+80FWwIirb+jbCf+4svSFV00pac425eNjWnjaKRO13fc60mGs5arPl/wV9wB/KgzSwNCYxVOpAv/rPWoCyv1F4uAYjJt08BQfBErgDjui6ayHgHHobmapCMYixFv3s7y0eNuZcKayBWHzFnZCHTi+iYRkIsk+l19Mqe3wb2hXol/lnR1Yoi8aesv54cBlhQGYFCO2ZxdBjvXYgql52QoWzIXUbSypyEdbQBbzv4rY/o15OdhVWHMsvNG/KEJT/EG+EwPbWRqkl3vLok6o12K2JV9YOQJ80N1dQfhO4mg2WqjMIVL269fM5HJIrBjIpTItFWDpHImv0GYF38YFEE93C+F6DyRtbwb0N8Y8gbEbgpTngF7BKeUxcysM+Han+hNSMYrrC5s0=
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - deadsnakes
-    packages:
-    - g++-4.8
-    - python3.5
+  # LucsT GITHUB_TOKEN
+  - secure: "YCWZe1x6D+L38VU+NElEIHMtoRgiqS90mLGaq5mIZBAoriUP8A4SpNMsFFUw027t4jcjBJsb9gXR71llIKk85UjxQ8didBZU8ovgkLKefXSeAInYH8iRPJGolmoAQb4LVTGHmRVBnI8sHusLM7wVaeHkkOYdX7une7RkZBPaGDMHro1Tez+03xfrewA8/Vp03n9zZ0qtBhPikX99/gehss4CrzBzalfwXfoS7NO+ed3JDWQ2a0U1S2sNq1AC43cgWhd4bMxKBgHqXjI1NtiMWKGuRgn4V7XM4S3uE8y8ZUruGyByLdol/i72NW/1ox+gcZIcWzGQDpEQR2s18CH10i6oDrLtzTGozLPxm2Ymteyl2Y2EIMa5+3Ctdil8sL/RuQKwTE1HbKPaazx3EOhwU2CddwZAI5azUZmPzEuftCdbjvZAp6kXzfn759VeutB97AAWk8KLTtfKTbFKmvMIjsLlpEbcQGrHV8m99uY2/SxuiZg1AXotijJCr2ErW62clOHAZwqle8wJBF9JgJ554VJaMy72cJBkA/GpBShQOl/0uDqAF7OASnyRbdKqqOrpuwRtDvgKsSfBKeTYh4qY6wEWTbfk5/DaD1aYkGi8YQsDdIBuhoNmIJYHi6H7Sc5196geJklCyl0v9W5vgT+rzYGSrjqKL07IEnG3QXMyiBM="
 cache:
   yarn: true
   directories:
   - node_modules
 script:
-- yarn build
-after_success:
-- test "$TRAVIS_BRANCH" = "master" && test "$TRAVIS_PULL_REQUEST" = "false" && yarn run deploy:travis --branch=build
+  - yarn lint
+  - yarn build
+deploy:
+  - provider: script
+    repo: konnectors/cozy-konnector-theoldreader
+    skip-cleanup: true
+    script: yarn deploy
+    on:
+      branch: master
+  - provider: script
+    repo: konnectors/cozy-konnector-theoldreader
+    skip-cleanup: true
+    script: yarn deploy:prod
+    on:
+      branch: prod
