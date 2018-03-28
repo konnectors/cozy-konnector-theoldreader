@@ -10,18 +10,26 @@
   "author": "laedit",
   "license": "AGPL-3.0",
   "main": "./src/index.js",
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-cozy-app"
+    ]
+  },
+  "eslintIgnore": [
+    "build"
+  ],
   "dependencies": {
     "cozy-konnector-connection": "carrieje/cozy-konnector-connection",
     "cozy-konnector-libs": "3.8.0",
-    "pdfjs": "2.0.0-alpha.6",
-    "standard": "11.0.1"
+    "pdfjs": "2.0.0-alpha.6"
   },
   "scripts": {
     "start": "tsc && node ./src/index.js",
     "dev": "tsc && cozy-run-dev",
     "standalone": "tsc && cozy-run-standalone",
     "build": "webpack",
-    "lint": "standard --fix konnector.js",
+    "precommit": "yarn lint",
+    "lint": "eslint . --fix",
     "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}",
     "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}"
   },
@@ -31,6 +39,8 @@
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "4.5.1",
     "cozy-jobs-cli": "1.0.7",
+    "eslint": "4.19.1",
+    "eslint-config-cozy-app": "0.5.1",
     "git-directory-deploy": "1.5.1",
     "ts-loader": "4.1.0",
     "typescript": "2.8.1",
