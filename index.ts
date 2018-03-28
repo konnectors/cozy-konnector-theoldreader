@@ -1,3 +1,9 @@
+// Force sentry DSN into environment variables
+// In the future, will be set by the stack
+process.env.SENTRY_DSN =
+  process.env.SENTRY_DSN ||
+  'https://d0d79b33fcc04b61a86b388cfbcb361b:f97e4a087c66499bae48d267122a04c5@sentry.cozycloud.cc/32'
+
 import * as fs from "fs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
