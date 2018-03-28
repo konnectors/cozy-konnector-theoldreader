@@ -4,11 +4,12 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/laedit/cozy-konnector-theoldreader.git"
+    "url": "git+https://github.com/konnectors/cozy-konnector-theoldreader.git"
   },
   "keywords": [],
   "author": "laedit",
   "license": "AGPL-3.0",
+  "main": "./src/index.js",
   "dependencies": {
     "cozy-konnector-connection": "carrieje/cozy-konnector-connection",
     "cozy-konnector-libs": "3.8.0",
@@ -16,13 +17,14 @@
     "standard": "11.0.1"
   },
   "scripts": {
-    "start": "tsc && node index.js",
+    "start": "tsc && node ./src/index.js",
     "dev": "tsc && cozy-run-dev",
     "standalone": "tsc && cozy-run-standalone",
     "build": "webpack",
     "lint": "standard --fix konnector.js",
     "deploy:travis": "git-directory-deploy --username laedit --email $EMAIL --directory build/ --repo=https://$GITHUB_TOKEN@github.com/laedit/cozy-konnector-theoldreader.git",
-    "deploy": "git-directory-deploy --directory build/ --branch build --repo=https://github.com/laedit/cozy-konnector-theoldreader.git"
+    "deploy": "git-directory-deploy --directory build/ --branch build --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}"
+    "deploy:prod": "git-directory-deploy --directory build/ --branch latest --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.20",
