@@ -42,7 +42,7 @@ function start(fields: any): Promise<any> {
           (statusCode, $) => statusCode === 200 && $("a[href='/users/sign_in']").length === 0)
     .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
     .then(($: CheerioAPI) => {
-      log("debug", "Parsing receipts");
+      log("info", "Parsing receipts");
 
       return Array.from($(".payment-info > table > tbody > tr")).map(entry => {
         const currentLine: Cheerio = $(entry);
@@ -76,11 +76,11 @@ function start(fields: any): Promise<any> {
 }
 
 function getPdfStream(bill: any): Promise<any> {
-  log("debug", `getting invoice: ${bill.fileurl}`);
+  log("info", `getting invoice: ${bill.fileurl}`);
 
   return requestBase({ url: bill.fileurl })
     .then(($: CheerioAPI) => {
-      log("debug", `invoice downloaded`);
+      log("info", `invoice downloaded`);
 
       const billData: CheerioElement[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
 
