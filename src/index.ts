@@ -1,3 +1,9 @@
+// Force sentry DSN into environment variables
+// In the future, will be set by the stack
+process.env.SENTRY_DSN =
+  process.env.SENTRY_DSN ||
+  'https://d0d79b33fcc04b61a86b388cfbcb361b:f97e4a087c66499bae48d267122a04c5@sentry.cozycloud.cc/32'
+
 import * as fs from "fs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
@@ -36,7 +42,7 @@ function start(fields: any): Promise<any> {
           (statusCode, $) => statusCode === 200 && $("a[href='/users/sign_in']").length === 0)
     .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
     .then(($: CheerioAPI) => {
-      log("debug", "Parsing receipts");
+      log("info", "Parsing receipts");
 
       return Array.from($(".payment-info > table > tbody > tr")).map(entry => {
         const currentLine: Cheerio = $(entry);
@@ -70,11 +76,11 @@ function start(fields: any): Promise<any> {
 }
 
 function getPdfStream(bill: any): Promise<any> {
-  log("debug", `getting invoice: ${bill.fileurl}`);
+  log("info", `getting invoice: ${bill.fileurl}`);
 
   return requestBase({ url: bill.fileurl })
     .then(($: CheerioAPI) => {
-      log("debug", `invoice downloaded`);
+      log("info", `invoice downloaded`);
 
       const billData: CheerioElement[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
 
