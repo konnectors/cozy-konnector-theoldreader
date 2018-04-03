@@ -7,13 +7,13 @@ process.env.SENTRY_DSN =
 import * as fs from "fs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
-import * as connection from "cozy-konnector-connection/connection.js";
 
 import {
   BaseKonnector,
   requestFactory,
   saveBills,
-  log
+  log,
+  signin
 } from "cozy-konnector-libs";
 
 const requestBase: any = requestFactory({
@@ -36,10 +36,17 @@ module.exports = new BaseKonnector(start);
 // the account information come from ./konnector-dev-config.json file
 function start(fields: any): Promise<any> {
   // The BaseKonnector instance expects a Promise as return of the function
-  return connection.init(baseUrl, "users/sign_in", "#new_user",
-          { "user[login]": fields.login, "user[password]": fields.password },
-          "cheerio",
-          (statusCode, $) => statusCode === 200 && $("a[href='/users/sign_in']").length === 0)
+  return signin({
+    url: `${baseUrl}/users/sign_in`,
+    formSelector: "#new_user",
+    formData: {
+      "user[login]": fields.login,
+      "user[password]": fields.password
+    },
+    parse: "cheerio",
+    validate: (statusCode, $) =>
+      statusCode === 200 && $("a[href='/users/sign_in']").length === 0
+  })
     .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
     .then(($: CheerioAPI) => {
       log("info", "Parsing receipts");
