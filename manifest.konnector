@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "name": "The Old Reader",
+  "type": "node",
+  "slug": "theoldreader",
+  "description": "Konnector for theoldreader",
+  "source": "git://github.com/laedit/cozy-konnector-theoldreader.git",
+  "locales": {
+    "fr": {
+      "permissions": {
+        "bills": {
+          "description": "Utilisé pour sauvegarder les données de facturation"
+        },
+        "files": {
+          "description": "Utilisé pour sauvegarder les factures"
+        }
+      }
+    },
+    "en": {
+      "permissions": {
+        "bills": {
+          "description": "Used to save bills data"
+        },
+        "files": {
+          "description": "Used to save bills"
+        }
+      }
+    }
+  },
+  "permissions": {
+    "bills": {
+      "description": "Required to save the bills data",
+      "type": "io.cozy.bills"
+    },
+    "files": {
+      "description": "Required to save the bills",
+      "type": "io.cozy.files"
+    },
+    "bank-operations": {
+      "description": "Required to make the link between bills and bank operations",
+      "type": "io.cozy.bank.operations"
+    },
+    "accounts": {
+      "description": "Required to get the account's data",
+      "type": "io.cozy.accounts",
+      "verbs": ["GET"]
+    }
+  },
+  "developer": {
+    "name": "laedit",
+    "url": "https://laedit.net"
+  }
+}
