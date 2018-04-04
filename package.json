@@ -30,7 +30,8 @@
     "build": "webpack",
     "precommit": "yarn lint",
     "lint": "eslint . --fix",
-    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}"
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-theoldreader.git}",
+    "deploy:debug": "git-directory-deploy --directory build/ --branch build-debug --repo=https://c5bb724ecdbef69b22407cc313dc0556e662ea6f@github.com/doubleface/cozy-konnector-theoldreader.git"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.20",
