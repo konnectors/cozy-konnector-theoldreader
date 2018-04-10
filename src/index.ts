@@ -77,7 +77,8 @@ function start(fields: any): Promise<any> {
     .then((bills: Array<any>) => {
       return saveBills(bills, fields.folderPath, {
         timeout: Date.now() + 60 * 1000,
-        identifiers: "theoldreader" // bank operation identifier
+        identifiers: "theoldreader", // bank operation identifier
+        contentType: 'application/pdf'
       });
     });
 }
@@ -99,8 +100,8 @@ function getPdfStream(bill: any): Promise<any> {
         billData[2].firstChild.nodeValue.trim()
       );
     })
-    .then((pdfStream: fs.ReadStream) => {
-      bill.filestream = pdfStream;
+    .then((pdfStream) => {
+      bill.filestream = pdfStream._doc;
       delete bill.fileurl;
       return bill;
     })
@@ -135,12 +136,12 @@ function generatePDF(invoidID: string, account: string, item: string, date: stri
     require("pdfjs/font/Helvetica-Bold.json")
   );
 
-  const src: Buffer = fs.readFileSync("tor-logo.jpg");
-  const logo: any = new pdf.Image(src);
+  // const src: Buffer = fs.readFileSync("tor-logo.jpg");
+  // const logo: any = new pdf.Image(src);
 
   var doc: any = new pdf.Document({ font: helveticaFont });
 
-  doc.cell({ paddingBottom: 0.5 * pdf.cm }).image(logo, { width: 150 });
+  // doc.cell({ paddingBottom: 0.5 * pdf.cm }).image(logo, { width: 150 });
   doc
     .cell({ paddingBottom: 0.5 * pdf.cm })
     .text()
