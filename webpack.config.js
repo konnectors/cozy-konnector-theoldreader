@@ -25,7 +25,8 @@ module.exports = {
       { from: 'manifest.konnector' },
       { from: 'package.json' },
       { from: 'README.md' },
-      { from: 'LICENSE' }
+      { from: 'LICENSE' },
+      { from: 'tor-logo.jpg' }
     ])
   ]
 }
