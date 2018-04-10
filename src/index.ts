@@ -104,7 +104,7 @@ function getPdfStream(bill: any): Promise<any> {
       delete bill.fileurl;
       return bill;
     })
-    .catch((err: Error) => log("PDF generation error", err));
+    .catch((err: Error) => log("error", err, "PDF generation error"));
 }
 
 function parseBillUrl(tr: CheerioElement, $: CheerioAPI): string {
