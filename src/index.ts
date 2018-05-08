@@ -4,7 +4,6 @@ process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
   'https://d0d79b33fcc04b61a86b388cfbcb361b:f97e4a087c66499bae48d267122a04c5@sentry.cozycloud.cc/32'
 
-import * as fs from "fs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
 
@@ -101,7 +100,7 @@ function getPdfStream(bill: any): Promise<any> {
       );
     })
     .then((pdfStream) => {
-      bill.filestream = pdfStream._doc;
+      bill.filestream = pdfStream;
       delete bill.fileurl;
       return bill;
     })
@@ -130,16 +129,13 @@ function getFileName(entryDate: moment.Moment, entryId: string): string {
   return `${entryDate.format("YYYY_MM_DD")}_${entryId}_TheOldReader.pdf`;
 }
 
-function generatePDF(invoidID: string, account: string, item: string, date: string, amount: string): fs.ReadStream {
-  const helveticaFont: any = new pdf.Font(require("pdfjs/font/Helvetica.json"));
-  const helveticaBoldFont: any = new pdf.Font(
-    require("pdfjs/font/Helvetica-Bold.json")
-  );
+function generatePDF(invoidID: string, account: string, item: string, date: string, amount: string): pdf.Document {
+  const helveticaBoldFont: pdf.Font = require("pdfjs/font/Helvetica-Bold");
 
   // const src: Buffer = fs.readFileSync("tor-logo.jpg");
   // const logo: any = new pdf.Image(src);
 
-  var doc: any = new pdf.Document({ font: helveticaFont });
+  var doc: pdf.Document = new pdf.Document();
 
   // doc.cell({ paddingBottom: 0.5 * pdf.cm }).image(logo, { width: 150 });
   doc
@@ -163,13 +159,13 @@ function generatePDF(invoidID: string, account: string, item: string, date: stri
     .add("Account: ", { font: helveticaBoldFont })
     .add(account);
 
-  var table: any = doc.table({
+  var table: pdf.Table = doc.table({
     widths: ["*", "*", "*"],
     borderWidth: 1,
     padding: 5
   });
 
-  var trHead: any = table.header({
+  var trHead: pdf.Row = table.header({
     font: helveticaBoldFont,
     borderBottomWidth: 1.5
   });
@@ -177,7 +173,7 @@ function generatePDF(invoidID: string, account: string, item: string, date: stri
   trHead.cell("Date");
   trHead.cell("Amount");
 
-  var tr: any = table.row();
+  var tr: pdf.Row = table.row();
   tr.cell(item);
   tr.cell(date, { textAlign: "right" });
   tr.cell(amount, { textAlign: "right" });
