@@ -1,47 +1,42 @@
 {
   "version": "1.0.0",
   "name": "The Old Reader",
-  "type": "node",
+  "type": "konnector",
+  "language": "node",
+  "icon": "icon.png",
   "slug": "theoldreader",
-  "description": "Konnector for theoldreader",
-  "source": "git://github.com/laedit/cozy-konnector-theoldreader.git",
-  "locales": {
-    "fr": {
-      "permissions": {
-        "bills": {
-          "description": "Utilisé pour sauvegarder les données de facturation"
-        },
-        "files": {
-          "description": "Utilisé pour sauvegarder les factures"
-        }
-      }
+  "source": "git://github.com/konnectors/cozy-konnector-theoldreader.git",
+  "editor": "Jérémie Bertrand",
+  "vendor_link": "https://theoldreader.com/",
+  "categories": ["other"],
+  "fields": {
+    "login": {
+      "type": "text"
     },
-    "en": {
-      "permissions": {
-        "bills": {
-          "description": "Used to save bills data"
-        },
-        "files": {
-          "description": "Used to save bills"
-        }
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+        "advanced": true,
+        "isRequired": false
       }
     }
   },
+  "data_types": [
+    "bill"
+  ],
   "permissions": {
+    "bank-operations": {
+      "type": "io.cozy.bank.operations"
+    },
     "bills": {
-      "description": "Required to save the bills data",
       "type": "io.cozy.bills"
     },
     "files": {
-      "description": "Required to save the bills",
       "type": "io.cozy.files"
     },
-    "bank-operations": {
-      "description": "Required to make the link between bills and bank operations",
-      "type": "io.cozy.bank.operations"
-    },
     "accounts": {
-      "description": "Required to get the account's data",
       "type": "io.cozy.accounts",
       "verbs": ["GET"]
     }
@@ -49,5 +44,44 @@
   "developer": {
     "name": "laedit",
     "url": "https://laedit.net"
+  },
+  "langs": ["fr", "en"],
+  "locales": {
+    "fr": {
+      "short_description": "Connecteur pour the old reader",
+      "long_description": "Connecteur pour the old reader",
+      "permissions": {
+        "bank operations": {
+          "description": "Utilisé pour relier les factures à des operations bancaires"
+        },
+        "bills": {
+          "description": "Utilisé pour sauver les données des factures"
+        },
+        "files": {
+          "description": "Utilisé pour sauvegarder les factures"
+        },
+        "accounts": {
+          "description": "Utilisé pour obtenir les données du compte"
+        }
+      }
+    },
+    "en": {
+      "short_description": "The Old Reader connector",
+      "long_description": "The Old Reader connector",
+      "permissions": {
+        "bank operations": {
+          "description": "Required to link bank operations to bills"
+        },
+        "bills": {
+          "description": "Required to save the bills data"
+        },
+        "files": {
+          "description": "Required to save the bills"
+        },
+        "accounts": {
+          "description": "Required to get the account's data"
+        }
+      }
+    }
   }
 }
