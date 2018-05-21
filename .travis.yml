@@ -1,33 +1,41 @@
 language: node_js
-matrix:
-  fast_finish: true
 node_js:
-  - '8'
-branches:
-  except:
-    - build
+- '8'
 env:
   global:
-    # LucsT GITHUB_TOKEN
-    # to generate yours : travis encrypt GITHUB_TOKEN=<your_GITHUB_TOKEN> -r konnectors/cozy-konnector-theoldreader
-    - secure: "e0gZ8kMRImiHYeoTmPeyolPmC/JaN8+cI4Mf9dDt3jHXHTxuTgGGEvBS8SqP8RAXzRXsfSp/KqxVEePsHbLKY8wO6adf38z4mrTqcvWMC0gf1/Ly8pYpJb4Dr98pFbUfo9nAkD8UbRm6b0DPElB9AOWPymf7e6DqZlvITZ7+A2Yb2pWsovAiokC6LgGETWGz91xXeW5r8TxaGsQpuhIdxQ6QPRDgkLVgpc9VCBqk+/Oe04Bdbj1UHvHhak4AxYEZQDNlbGKIzDOIhiTrK1P+qV098O6dJmuk1bn/YwRgOoy/R7MOFdiq223WB9vj3qJNikqcwQJEkwuLCPkAtmuWuFJ0ufGe0XAZ5c1Sahqp7nOW5bst+1ihsQskBkF7zn0z6C1fuPtQ0w/QKmWJImhyC+rKI+lEg8cK1jJCkAx1iin9FReAiIy8x+baCgBx4DDabBaxMbJemoGT3pTL10UoPK+aDoxEXIRS153nfsFdVm0lGZTJTpIq19n0ATNiPqyprIQvU1CbhTZ9VAEd5Od4u8/Z5384R2jpO+FzWkIDLhBkahttmKGr1SK5EzeyROHJqanmm90B31SBAINDxk8e7FlAQBsuNRLLc9PD4y94cNDsRWRXruqdXy28X7D3ewPWcdxJF+Ev4bxCMWuraRXNYbd02IkGe47cKaGH06Sw3eM="
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/cozy-konnector-theoldreader.git"
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 script:
-  - yarn lint
-  - yarn build
+- yarn lint
+- yarn build
 deploy:
-  - provider: script
-    repo: konnectors/cozy-konnector-theoldreader
-    skip-cleanup: true
-    script: yarn deploy
-    on:
-      branch: master
-  - provider: script
-    repo: konnectors/cozy-konnector-theoldreader
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=latest yarn deploy
-    on:
-      branch: prod
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy
+  # script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=latest yarn deploy
+  on:
+    branch: prod
+# - provider: script
+#   skip-cleanup: true
+#   script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+#   on:
+#     tags: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_b35534f11451_key -iv $encrypted_b35534f11451_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
