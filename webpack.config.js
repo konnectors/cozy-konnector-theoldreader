@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
   entry: './src/index.ts',
   target: 'node',
+  mode: 'none',
   module: {
     rules: [
       {
@@ -25,6 +26,7 @@ module.exports = {
       { from: 'manifest.konnector' },
       { from: 'package.json' },
       { from: 'README.md' },
+      { from: 'assets' },
       { from: 'LICENSE' },
       { from: 'tor-logo.jpg' }
     ])
