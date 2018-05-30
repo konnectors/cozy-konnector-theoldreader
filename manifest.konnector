@@ -6,7 +6,7 @@
   "icon": "icon.png",
   "slug": "theoldreader",
   "source": "git://github.com/konnectors/cozy-konnector-theoldreader.git",
-  "editor": "Jérémie Bertrand",
+  "editor": "laedit",
   "vendor_link": "https://theoldreader.com/",
   "categories": ["other"],
   "fields": {
@@ -48,26 +48,20 @@
   "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Connecteur pour the old reader",
-      "long_description": "Connecteur pour the old reader",
+      "short_description": "Récupérer vos données The Old Reader dans votre Cozy",
+      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos factures The Old Reader dans votre Cozy.",
       "permissions": {
-        "bank operations": {
-          "description": "Utilisé pour relier les factures à des operations bancaires"
-        },
         "bills": {
-          "description": "Utilisé pour sauver les données des factures"
+          "description": "Utilisé pour sauvegarder les données de facturation"
         },
         "files": {
           "description": "Utilisé pour sauvegarder les factures"
-        },
-        "accounts": {
-          "description": "Utilisé pour obtenir les données du compte"
         }
       }
     },
     "en": {
-      "short_description": "The Old Reader connector",
-      "long_description": "The Old Reader connector",
+      "short_description": "Fetch your The Old Reader data in your Cozy",
+      "long_description": "This provider will allow you to fetch all your bills from The Old Reader in your Cozy.",
       "permissions": {
         "bank operations": {
           "description": "Required to link bank operations to bills"
