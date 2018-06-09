@@ -1,8 +1,9 @@
 var path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
+const entry = require('./package.json').main
 
 module.exports = {
-  entry: './src/index.ts',
+  entry,
   target: 'node',
   mode: 'none',
   module: {
@@ -27,6 +28,7 @@ module.exports = {
       { from: 'package.json' },
       { from: 'README.md' },
       { from: 'assets' },
+      { from: '.travis.yml' },
       { from: 'LICENSE' },
       { from: 'tor-logo.jpg' }
     ])

@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-theoldreader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "laedit",
   "license": "AGPL-3.0",
-  "main": "./src/index.js",
+  "main": "./src/index.ts",
   "eslintConfig": {
     "extends": [
       "eslint-config-cozy-app"
@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "cozy-run-dev",
-    "standalone": "cozy-run-standalone",
+    "dev": "tsc && cozy-run-dev",
+    "standalone": "tsc && cozy-run-standalone",
     "pretest": "npm run clean",
     "test": "konitor testit .",
     "check": "konitor check .",
