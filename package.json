@@ -19,7 +19,7 @@
     "build"
   ],
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "tsc && node ./src/index.js",
     "dev": "tsc && cozy-run-dev",
     "standalone": "tsc && cozy-run-standalone",
     "pretest": "npm run clean",
