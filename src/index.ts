@@ -19,7 +19,7 @@ const requestBase: any = requestFactory({
   method: "GET",
   cheerio: true,
   jar: true,
-  debug: false,
+  //debug: true,
   headers: {
     accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
   },
@@ -44,7 +44,10 @@ function start(fields: any): Promise<any> {
     },
     parse: "cheerio",
     validate: (statusCode, $) =>
-      statusCode === 200 && $("a[href='/users/sign_in']").length === 0
+      statusCode === 200 && $("a[href='/users/sign_in']").length === 0,
+    headers: {
+      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    }
   })
     .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
     .then(($: CheerioAPI) => {

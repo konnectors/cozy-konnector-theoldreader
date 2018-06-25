@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "laedit",
   "license": "AGPL-3.0",
-  "main": "./src/index.ts",
+  "main": "./src/index.js",
   "eslintConfig": {
     "extends": [
       "eslint-config-cozy-app"
