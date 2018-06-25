@@ -1,9 +1,8 @@
 var path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
-const entry = require('./package.json').main
 
 module.exports = {
-  entry,
+  entry: './src/index.ts',
   target: 'node',
   mode: 'none',
   module: {
