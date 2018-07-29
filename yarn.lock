@@ -97,9 +97,9 @@
   dependencies:
     unicode-trie "^0.3.0"
 
-"@types/bluebird@3.5.22":
-  version "3.5.22"
-  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.22.tgz#519b87fe3c9d290ca6c06381ffc3040770ab452b"
+"@types/bluebird@3.5.23":
+  version "3.5.23"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.23.tgz#e805da976b76892b2b2e50eec29e84914c730670"
 
 "@types/cheerio@0.22.8":
   version "0.22.8"
