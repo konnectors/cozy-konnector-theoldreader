@@ -169,8 +169,7 @@ function generatePDF(invoidID: string, account: string, item: string, date: stri
   });
 
   var trHead: pdf.Row = table.header({
-    font: helveticaBoldFont,
-    borderBottomWidth: 1.5
+    font: helveticaBoldFont
   });
   trHead.cell("Item");
   trHead.cell("Date");
