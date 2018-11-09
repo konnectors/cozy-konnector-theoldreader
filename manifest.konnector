@@ -1,12 +1,62 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "The Old Reader",
-  "type": "node",
+  "type": "konnector",
+  "language": "node",
+  "icon": "icon.png",
   "slug": "theoldreader",
-  "description": "Konnector for theoldreader",
-  "source": "git://github.com/laedit/cozy-konnector-theoldreader.git",
+  "source": "git://github.com/konnectors/cozy-konnector-theoldreader.git",
+  "editor": "laedit",
+  "vendor_link": "https://theoldreader.com/",
+  "categories": [
+    "other"
+  ],
+  "fields": {
+    "login": {
+      "type": "text"
+    },
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+        "advanced": true,
+        "isRequired": false
+      }
+    }
+  },
+  "data_types": [
+    "bill"
+  ],
+  "permissions": {
+    "bank-operations": {
+      "type": "io.cozy.bank.operations"
+    },
+    "bills": {
+      "type": "io.cozy.bills"
+    },
+    "files": {
+      "type": "io.cozy.files"
+    },
+    "accounts": {
+      "type": "io.cozy.accounts",
+      "verbs": [
+        "GET"
+      ]
+    }
+  },
+  "developer": {
+    "name": "laedit",
+    "url": "https://laedit.net"
+  },
+  "langs": [
+    "fr",
+    "en"
+  ],
   "locales": {
     "fr": {
+      "short_description": "Récupérer vos données The Old Reader dans votre Cozy",
+      "long_description": "Ce fournisseur vous permettra de récupérer l'ensemble de vos factures The Old Reader dans votre Cozy.",
       "permissions": {
         "bills": {
           "description": "Utilisé pour sauvegarder les données de facturation"
@@ -17,37 +67,24 @@
       }
     },
     "en": {
+      "short_description": "Fetch your The Old Reader data in your Cozy",
+      "long_description": "This provider will allow you to fetch all your bills from The Old Reader in your Cozy.",
       "permissions": {
+        "bank operations": {
+          "description": "Required to link bank operations to bills"
+        },
         "bills": {
-          "description": "Used to save bills data"
+          "description": "Required to save the bills data"
         },
         "files": {
-          "description": "Used to save bills"
+          "description": "Required to save the bills"
+        },
+        "accounts": {
+          "description": "Required to get the account's data"
         }
       }
     }
   },
-  "permissions": {
-    "bills": {
-      "description": "Required to save the bills data",
-      "type": "io.cozy.bills"
-    },
-    "files": {
-      "description": "Required to save the bills",
-      "type": "io.cozy.files"
-    },
-    "bank-operations": {
-      "description": "Required to make the link between bills and bank operations",
-      "type": "io.cozy.bank.operations"
-    },
-    "accounts": {
-      "description": "Required to get the account's data",
-      "type": "io.cozy.accounts",
-      "verbs": ["GET"]
-    }
-  },
-  "developer": {
-    "name": "laedit",
-    "url": "https://laedit.net"
-  }
+  "banksTransactionRegExp": "\\btheoldreader\\b",
+  "manifest_version": "2"
 }
