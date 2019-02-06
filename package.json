@@ -52,7 +52,7 @@
     "konitor": "0.10.1",
     "ts-loader": "5.3.3",
     "typescript": "3.3.1",
-    "webpack": "4.29.1",
+    "webpack": "4.29.2",
     "webpack-cli": "3.2.3"
   }
 }
