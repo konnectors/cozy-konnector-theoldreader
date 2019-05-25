@@ -42,12 +42,12 @@
     "pdfjs": "2.3.0"
   },
   "devDependencies": {
-    "@types/bluebird": "3.5.26",
+    "@types/bluebird": "3.5.27",
     "@types/cheerio": "0.22.11",
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "5.0.3",
     "cozy-app-publish": "0.15.0",
-    "cozy-jobs-cli": "1.8.13",
+    "cozy-jobs-cli": "1.8.14",
     "eslint": "5.16.0",
     "eslint-config-cozy-app": "1.1.12",
     "eslint-plugin-prettier": "3.1.0",
