@@ -57,7 +57,7 @@
     "svgo": "1.2.2",
     "ts-loader": "6.0.4",
     "typescript": "3.5.2",
-    "webpack": "4.35.0",
+    "webpack": "4.35.2",
     "webpack-cli": "3.3.5"
   }
 }
