@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/bluebird": "3.5.27",
-    "@types/cheerio": "0.22.11",
+    "@types/cheerio": "0.22.12",
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "5.0.3",
     "cozy-app-publish": "0.16.2",
