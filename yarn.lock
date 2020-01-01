@@ -4384,10 +4384,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pdfjs@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/pdfjs/-/pdfjs-2.3.1.tgz#858364110669f41f2c67cc6b0d0423e6ec660d65"
-  integrity sha512-1nqTvWffCgLz49aXTQsAZlesNj5zT7MlyqjA4r+u+/zERWrSvGELa7Yi9Fs/WH4Fq4GzImk/cQOjhyt+S1ZQ7g==
+pdfjs@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/pdfjs/-/pdfjs-2.3.2.tgz#859a590e9b6ec604ce48679e8c4d982db7d523ad"
+  integrity sha512-JgnRboVxoH8ebHfZIj9kLB4jrh54RAhXmbMsCmvaz+boCdlu1pXphIq5QEJL2G+uHOOEWjaie7leAZyv6BS3iw==
   dependencies:
     "@rkusa/linebreak" "^1.0.0"
     opentype.js "^1.1.0"
