@@ -4,16 +4,9 @@ process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
   'https://d0d79b33fcc04b61a86b388cfbcb361b:f97e4a087c66499bae48d267122a04c5@sentry.cozycloud.cc/32'
 
+import { BaseKonnector, log, requestFactory, saveBills, signin } from "cozy-konnector-libs";
 import * as moment from "moment";
 import * as pdf from "pdfjs";
-
-import {
-  BaseKonnector,
-  requestFactory,
-  saveBills,
-  log,
-  signin
-} from "cozy-konnector-libs";
 
 const requestBase: any = requestFactory({
   method: "GET",
@@ -113,7 +106,7 @@ function getPdfStream(bill: any): Promise<any> {
 function parseBillUrl(tr: CheerioElement, $: CheerioAPI): string {
   return $(tr)
     .children("a")
-    .attr("href");
+    .attr("href")!;
 }
 
 function getBillId(billUrl: string): string {
