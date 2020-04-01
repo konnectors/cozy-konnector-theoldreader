@@ -42,7 +42,7 @@
     "pdfjs": "2.3.4"
   },
   "devDependencies": {
-    "@types/bluebird": "3.5.29",
+    "@types/bluebird": "3.5.30",
     "@types/cheerio": "0.22.16",
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "5.1.1",
