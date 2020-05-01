@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "cozy-konnector-libs": "4.34.2",
-    "pdfjs": "2.3.4"
+    "pdfjs": "2.3.6"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.30",
