@@ -45,7 +45,7 @@
     "@types/bluebird": "3.5.32",
     "@types/cheerio": "0.22.21",
     "@types/moment": "2.13.0",
-    "copy-webpack-plugin": "6.0.3",
+    "copy-webpack-plugin": "6.1.0",
     "cozy-app-publish": "0.23.1",
     "cozy-jobs-cli": "1.13.6",
     "eslint-config-cozy-app": "1.5.0",
