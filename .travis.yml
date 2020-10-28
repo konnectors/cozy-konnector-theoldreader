@@ -3,10 +3,11 @@ node_js:
 - '12'
 env:
   global:
-  - GH_USER_EMAIL="travis@example.org"
-  - GH_USER_NAME="cozy-bot"
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/cozy-konnector-theoldreader.git"
+  - MATTERMOST_CHANNEL=publication
+  # REGISTRY_TOKEN(editor=cozy, app=theoldreader)
   - secure: PJE3zXWCJbz9ZJ2zrHX8YssBDWXpT3SX18A6DUmpUbMqEPt6NcTUpOb+xP30WS5QtoQMYGXb9ZnkdAa97vymGbT1EdG/eE4FH8vFfgqaAK+AjW6gWpire9Wb8eR4KUkfbVChQ8NkoXg/C398+9XVlixrTU6eIayC41J3xDWayES1R/jmBnlJcMjxhZNUmKBvLsmooD8sEpGDKeYTLs5hoCxmMO8fK0BsyCPmnCTa/v9k022v4zgp1Jy9gRu8VVLav/3ddeCU5VQuQPI3SFtQyrjZIOJxvLoHk7+xuSgS8Z5vIowGsjpD9zQQBaQQ5Ewzn886c9unZm3df5DmlVaRepdsRU1LNk0GTe9oKXJl2MuVsX/bl4X1eipNbnqXB8u3dZdcs3m2Xi6V0a9qL3GiijK1NzltF2u6hWzncBod1jchFqWonjiEfQKPGxHoqUOJ+B6EDE203/jPtIi0HC1R4pLHM/dU1M44Nf8YoR+6TdLFF1PhybtqkhLUsnoVuOC5oio1pk5tXimugZCSTWNlDqIlCRhMXFokzWBJO1rVCcLH9n15N6KoawqwlOFxXn/LdUdnDON/rORUfbbLxmgGaarrU7vjLTxxC8TyFFvU5gLyYx9nu6AtgZs7jPwOwzarris52GY6SQ2xY/UO2v/RZ9YHtctCq4nY4ObpeQeD5Uk=
+  # MATTERMOST_HOOK_URL
+  - secure: rPyFzfHvv4nxxNsIgcP7beAX1z2Hq5gg+XydmgS0IazeI/xdic8hGShEJwDqhESWxEA1v6bcYfg2dOQrol2/bewwax65eOzwwoFUXlGpNLH8pt362Kr7QQxaA8KRi02IyumrkjYyKtoDDBkCI+GE0V5b/yHRUc05K/hfwGwK4Eh0b5iRLx5yXQ6jnFzURN1C3zFQId735893dka+Z+KE5pzbSFcsrgNNzWELPaslBvLwU8DXUxvkHZ3kVr8/2XTSFJOFuhOOx13BAfdyb3avA2iAXlnfJKCJUQPM+ZUzQNICSgKWK4f/LnXo0GdTbtQEu80B7LJ8UdZMzvU+UY5voJIpwpg9vDBvTKMiHNVwxA/CL/5iTQF5bhBvkGxxDFquu2X1duc9cCaqZtzTJ+94AKM2i6BW0/w8MBXlEsULDTFGX9aMCxxshT9weCfqbLo8NrZPuMDf/3dv+ZmgXaDijY/Q59xUaPe6wouNWJJ+330+m8CvxyY9336/8bc0LB2a+LCogBOeCXmVNd0FRmQZzQ5x4c+VPE9N2C4YKvRzanpLemFWHSR+HvKOg6a8lnGEMdDWtOQUS8fGgvqMGkFZ50P47865fRut4ZTKV86CbI+YbljUwtqc4/aoIipdB3j/tWccAMhLNXFicg7Ei1TEUcqDQUiZPwtXwWCUSzQ4/iE=
 cache:
   yarn: true
   directories:
@@ -18,7 +19,6 @@ branches:
 script:
 - yarn lint
 - yarn build
-- yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
@@ -27,7 +27,7 @@ deploy:
     branch: master
 - provider: script
   skip-cleanup: true
-  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish --postpublish mattermost
   on:
     tags: true
 before_install:
