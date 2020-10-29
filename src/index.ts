@@ -43,12 +43,12 @@ function start(fields: any): Promise<any> {
     }
   })
     .then(() => requestBase({ url: `${baseUrl}/accounts/-/edit` }))
-    .then(($: CheerioAPI) => {
+    .then(($: cheerio.CheerioAPI) => {
       log("info", "Parsing receipts");
 
       return Array.from($(".payment-info > table > tbody > tr")).map(entry => {
-        const currentLine: Cheerio = $(entry);
-        const entryProperties: Cheerio = currentLine.children();
+        const currentLine: cheerio.Cheerio = $(entry);
+        const entryProperties: cheerio.Cheerio = currentLine.children();
         const billDate: moment.Moment = moment.utc(
           $(entryProperties[0]).text(),
           "MMMM DD, YYYY"
@@ -82,10 +82,10 @@ function getPdfStream(bill: any): Promise<any> {
   log("info", `getting invoice: ${bill.fileurl}`);
 
   return requestBase({ url: bill.fileurl })
-    .then(($: CheerioAPI) => {
+    .then(($: cheerio.CheerioAPI) => {
       log("info", `invoice downloaded`);
 
-      const billData: CheerioElement[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
+      const billData: cheerio.Element[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
 
       return generatePDF(
         bill.id,
@@ -103,7 +103,7 @@ function getPdfStream(bill: any): Promise<any> {
     .catch((err: Error) => log("error", err, "PDF generation error"));
 }
 
-function parseBillUrl(tr: CheerioElement, $: CheerioAPI): string {
+function parseBillUrl(tr: cheerio.Element, $: cheerio.CheerioAPI): string {
   return $(tr)
     .children("a")
     .attr("href")!;
