@@ -85,14 +85,14 @@ function getPdfStream(bill: any): Promise<any> {
     .then(($: cheerio.CheerioAPI) => {
       log("info", `invoice downloaded`);
 
-      const billData: cheerio.Element[] = Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
+      const billData: cheerio.TagElement[] = <cheerio.TagElement[]> Array.from($(".container > .row > .col-md-12 > table > tbody > tr > td"));
 
       return generatePDF(
         bill.id,
-        $(".container > .row > .col-md-12 > strong")[0].next.nodeValue.trim(),
-        billData[0].firstChild.nodeValue.trim().replace(/\r?\n|\r/g, "").replace(/\s{2,}/g, " "),
-        billData[1].firstChild.nodeValue.trim(),
-        billData[2].firstChild.nodeValue.trim()
+        (<cheerio.TagElement>$(".container > .row > .col-md-12 > strong")[0].next)!.nodeValue.trim(),
+        (<cheerio.TagElement>billData[0].firstChild).nodeValue.trim().replace(/\r?\n|\r/g, "").replace(/\s{2,}/g, " "),
+        (<cheerio.TagElement>billData[1].firstChild).nodeValue.trim(),
+        (<cheerio.TagElement>billData[2].firstChild).nodeValue.trim()
       );
     })
     .then((pdfStream) => {
