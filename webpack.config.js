@@ -2,20 +2,12 @@ var path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 const fs = require('fs')
-const SvgoInstance = require('svgo')
+const { optimize } = require('svgo');
 
 const entry = require('./package.json').main
 
 const readManifest = () =>
   JSON.parse(fs.readFileSync(path.join(__dirname, './manifest.konnector')))
-
-const svgo = new SvgoInstance({
-  plugins: [
-    {
-      inlineStyles: { onlyMatchedOnce: false }
-    }
-  ]
-})
 
 let iconName
 try {
@@ -61,7 +53,7 @@ module.exports = {
 
 function optimizeSVGIcon(buffer, path) {
   if (appIconRX && path.match(appIconRX)) {
-    return svgo.optimize(buffer).then(resp => resp.data)
+    return optimize(buffer).then(resp => resp.data)
   } else {
     return buffer
   }
