@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "cozy-konnector-libs": "4.42.2",
-    "pdfjs": "2.4.4"
+    "pdfjs": "2.4.5"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.36",
@@ -49,11 +49,11 @@
     "cozy-jobs-cli": "1.16.2",
     "eslint-config-cozy-app": "2.1.0",
     "git-directory-deploy": "1.5.1",
-    "husky": "6.0.0",
+    "husky": "7.0.1",
     "svgo": "1.3.2",
     "ts-loader": "8.3.0",
     "typescript": "4.3.5",
-    "webpack": "5.41.1",
+    "webpack": "5.47.1",
     "webpack-cli": "4.7.2"
   }
 }
