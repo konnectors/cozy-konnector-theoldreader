@@ -53,7 +53,7 @@ module.exports = {
 
 function optimizeSVGIcon(buffer, path) {
   if (appIconRX && path.match(appIconRX)) {
-    return optimize(buffer).then(resp => resp.data)
+    return optimize(buffer).data
   } else {
     return buffer
   }
