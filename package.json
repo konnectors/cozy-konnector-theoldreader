@@ -38,13 +38,13 @@
   },
   "dependencies": {
     "cozy-konnector-libs": "4.45.0",
-    "pdfjs": "2.4.6"
+    "pdfjs": "2.4.7"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.36",
     "@types/cheerio": "0.22.30",
     "@types/moment": "2.13.0",
-    "copy-webpack-plugin": "9.0.1",
+    "copy-webpack-plugin": "9.1.0",
     "cozy-app-publish": "0.27.2",
     "cozy-jobs-cli": "1.16.6",
     "eslint-config-cozy-app": "2.1.1",
