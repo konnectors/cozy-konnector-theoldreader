@@ -46,7 +46,7 @@
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "10.2.4",
     "cozy-app-publish": "0.29.0",
-    "cozy-jobs-cli": "1.17.4",
+    "cozy-jobs-cli": "1.17.5",
     "eslint-config-cozy-app": "2.1.1",
     "git-directory-deploy": "1.5.1",
     "husky": "7.0.4",
