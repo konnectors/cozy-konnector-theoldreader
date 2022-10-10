@@ -45,7 +45,7 @@
     "@types/cheerio": "0.22.31",
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "10.2.4",
-    "cozy-app-publish": "0.31.0",
+    "cozy-app-publish": "0.32.0",
     "cozy-jobs-cli": "1.19.2",
     "eslint-config-cozy-app": "2.1.1",
     "git-directory-deploy": "1.5.1",
