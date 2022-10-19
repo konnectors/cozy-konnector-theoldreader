@@ -37,7 +37,7 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "4.55.0",
+    "cozy-konnector-libs": "4.56.0",
     "pdfjs": "2.4.7"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "10.2.4",
     "cozy-app-publish": "0.32.0",
-    "cozy-jobs-cli": "1.19.2",
+    "cozy-jobs-cli": "1.19.3",
     "eslint-config-cozy-app": "2.1.1",
     "git-directory-deploy": "1.5.1",
     "husky": "7.0.4",
