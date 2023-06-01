@@ -3635,10 +3635,10 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-pdfjs@2.4.7:
-  version "2.4.7"
-  resolved "https://registry.yarnpkg.com/pdfjs/-/pdfjs-2.4.7.tgz#966084e63a0283206c1307c3b332f53248917f20"
-  integrity sha512-qGGZiQ7cz7nDgRgNSMm0qsZ4QPlAvZr+kWwB78hZzClojtfqGbGUT/gwzf8S2nniwvLMB56boBTTIppQohTJUA==
+pdfjs@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/pdfjs/-/pdfjs-2.5.0.tgz#3e46714e9d197168825898498f3499fd868ecb4c"
+  integrity sha512-SGd2QuVp/4WfbRAkb4Jh9+WrB/NULqAhijvvHX3Gkf6vgMLoQeYmLQE54UImWCuiy9/kAM7UMfoDuslP++NRaA==
   dependencies:
     "@rkusa/linebreak" "^1.0.0"
     opentype.js "^1.3.3"
