@@ -867,6 +867,22 @@ blueimp-md5@^2.10.0:
   resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.18.0.tgz#1152be1335f0c6b3911ed9e36db54f3e6ac52935"
   integrity sha512-vE52okJvzsVWhcgUHOv+69OG3Mdg151xyn41aVQN/5W5S+S43qZhxECtYLAEHMSFWX6Mv5IZrzj3T5+JqXfj5Q==
 
+body-parser@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
+  integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
+  dependencies:
+    bytes "3.1.0"
+    content-type "~1.0.4"
+    debug "2.6.9"
+    depd "~1.1.2"
+    http-errors "1.7.2"
+    iconv-lite "0.4.24"
+    on-finished "~2.3.0"
+    qs "6.7.0"
+    raw-body "2.4.0"
+    type-is "~1.6.17"
+
 body-parser@1.20.1, body-parser@^1.19.0:
   version "1.20.1"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.1.tgz#b1812a8912c195cd371a3ee5e66faa2338a5c668"
@@ -1293,32 +1309,7 @@ cozy-client-js@^0.20.0:
     pouchdb-browser "7.0.0"
     pouchdb-find "7.0.0"
 
-cozy-client@41.2.0:
-  version "41.2.0"
-  resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-41.2.0.tgz#a2d72fabe6ba1be4bf5fee39a52a953b9c1dd6c1"
-  integrity sha512-e/YYLE06/kpW7s9qGxEmhvILcRRLs3oZhIDyGmsQfJbmsCthfAxCc291qLQwcqdDVzG8gEi/UNfUySJhqbEAYQ==
-  dependencies:
-    "@cozy/minilog" "1.0.0"
-    "@types/jest" "^26.0.20"
-    "@types/lodash" "^4.14.170"
-    btoa "^1.2.1"
-    cozy-stack-client "^41.2.0"
-    date-fns "2.29.3"
-    json-stable-stringify "^1.0.1"
-    lodash "^4.17.13"
-    microee "^0.0.6"
-    node-fetch "^2.6.1"
-    node-polyglot "2.4.2"
-    open "7.4.2"
-    prop-types "^15.6.2"
-    react-redux "^7.2.0"
-    redux "3 || 4"
-    redux-thunk "^2.3.0"
-    server-destroy "^1.0.1"
-    sift "^6.0.0"
-    url-search-params-polyfill "^8.0.0"
-
-cozy-client@^45.14.1:
+cozy-client@45.14.1, cozy-client@^45.14.1:
   version "45.14.1"
   resolved "https://registry.yarnpkg.com/cozy-client/-/cozy-client-45.14.1.tgz#dc0e77e93b48b0a8a302a6f7dc3217d8a6d046c1"
   integrity sha512-K2Fm1J60XFeRyAhfPywSU9+Kj7FHVcBP+B2K/lwWVOS3dob/iCBlrjgpRNjViErY0kVevgemt3oscZjbnr0mdQ==
@@ -1368,10 +1359,10 @@ cozy-flags@^2.8.7:
   dependencies:
     microee "^0.0.6"
 
-cozy-jobs-cli@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/cozy-jobs-cli/-/cozy-jobs-cli-2.3.2.tgz#536d5a16eacb343f494ca50fb87ea7d745c943c9"
-  integrity sha512-CCd9fNdUfsCVUU9DJDsXppPVtdpNH4Yz3m2/KN3+a3JfwRajRZNd9GvgDZWNxZ+kI8gCUa2rmsfE+tXMjcmCqw==
+cozy-jobs-cli@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cozy-jobs-cli/-/cozy-jobs-cli-2.4.0.tgz#86fc2fb5722cb493d3e1cab63eb77cc724cbd379"
+  integrity sha512-6WSnXSHoN4+6S5fPvBWQTfITI6iUuhpPL86fUe2aIk4LMUzluUZb2ZiYSYxBBY8ThLbZjDY1pvnrnlK1v2F1gg==
   dependencies:
     "@pollyjs/adapter-node-http" "5.1.1"
     "@pollyjs/core" "5.1.1"
@@ -1382,23 +1373,25 @@ cozy-jobs-cli@2.3.2:
     cheerio "1.0.0-rc.12"
     cli-highlight "2.1.11"
     commander "7.2.0"
-    cozy-client "41.2.0"
+    cozy-client "45.14.1"
     cozy-device-helper "^2.1.0"
     cozy-flags "^2.8.7"
-    cozy-konnector-libs "^5.9.1"
+    cozy-konnector-libs "^5.10.0"
     cozy-logger "1.9.0"
+    node-fetch "2.7.0"
     open "8.4.0"
     pretty "2.0.0"
     strip-json-comments "3.1.1"
 
-cozy-konnector-libs@5.9.1, cozy-konnector-libs@^5.9.1:
-  version "5.9.1"
-  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-5.9.1.tgz#ea18cb66979f86240be0f03bc47efce2e61e8a58"
-  integrity sha512-9j0hqf2ktSRETRHQh+hHdp5ElthsFc9XS5HkmfTBV3qRVHb2f5lNvggHP+KM+VmfhmjEMRscku6Y4A0g+eUmPw==
+cozy-konnector-libs@5.10.0, cozy-konnector-libs@^5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/cozy-konnector-libs/-/cozy-konnector-libs-5.10.0.tgz#467f52fca36619115903e361c390477cde4c73b4"
+  integrity sha512-oukqoTnNObjiH/Y3iYR3WR+EuUKSnNXDwiyViDZNMhtlG/sK7nRx4kb1J9lB9H/RH8m4QKB3An6kjnl6iwVTkg==
   dependencies:
     babel-runtime "^6.26.0"
     bluebird "^3.7.2"
     bluebird-retry "^0.11.0"
+    body-parser "1.19.0"
     btoa "1.2.1"
     cheerio "^1.0.0-rc.9"
     classificator "^0.3.3"
@@ -1411,6 +1404,7 @@ cozy-konnector-libs@5.9.1, cozy-konnector-libs@^5.9.1:
     date-fns "^2.22.1"
     file-type "^16.5.0"
     geco "git+https://github.com/konnectors/geco.git#0.11.2"
+    lodash "^4.17.21"
     lodash-id "^0.14.0"
     lowdb "^1.0.0"
     mime-types "^2.1.31"
@@ -1421,6 +1415,7 @@ cozy-konnector-libs@5.9.1, cozy-konnector-libs@^5.9.1:
     request-debug "^0.2.0"
     request-promise "^4.2.6"
     strip-json-comments "^3.1.1"
+    tough-cookie "^2.5.0"
 
 cozy-logger@1.9.0, cozy-logger@^1.9.0:
   version "1.9.0"
@@ -1437,15 +1432,6 @@ cozy-logger@^1.8.0:
   dependencies:
     chalk "^2.4.2"
     json-stringify-safe "5.0.1"
-
-cozy-stack-client@^41.2.0:
-  version "41.2.0"
-  resolved "https://registry.yarnpkg.com/cozy-stack-client/-/cozy-stack-client-41.2.0.tgz#0844c2680a6a5c70dba5caccaa2dbd23a78c3c20"
-  integrity sha512-q6y9YUg2Qxd9cK86a2sw1IgdlJSOJa1rMRh0/GSMeGIQ6seKmmheRl/aF/KeHoXkyDV9T7OkE+vF8dmDLU2cAQ==
-  dependencies:
-    detect-node "^2.0.4"
-    mime "^2.4.0"
-    qs "^6.7.0"
 
 cozy-stack-client@^45.13.0:
   version "45.13.0"
@@ -2600,6 +2586,17 @@ htmlparser2@^8.0.1:
     domutils "^3.0.1"
     entities "^4.3.0"
 
+http-errors@1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.2.tgz#4f5029cf13239f31036e5b2e55292bcfbcc85c8f"
+  integrity sha512-uUQBt3H/cSIVfch6i1EuPNy/YsRSOUBXTVfZ+yR7Zjez3qjBz6i9+i4zjNaoqcoFVI4lQJ5plg63TvGfRSDCRg==
+  dependencies:
+    depd "~1.1.2"
+    inherits "2.0.3"
+    setprototypeof "1.1.1"
+    statuses ">= 1.5.0 < 2"
+    toidentifier "1.0.0"
+
 http-errors@1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.3.tgz#6c619e4f9c60308c38519498c14fbb10aacebb06"
@@ -3129,7 +3126,7 @@ lodash-id@^0.14.0:
   resolved "https://registry.yarnpkg.com/lodash-id/-/lodash-id-0.14.0.tgz#baf48934e543a1b5d6346f8c84698b1a8c803896"
   integrity sha1-uvSJNOVDobXWNG+MhGmLGoyAOJY=
 
-lodash@4, lodash@^4.14.2, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.19:
+lodash@4, lodash@^4.14.2, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -3387,6 +3384,13 @@ node-fetch@2.6.7, node-fetch@^2.0.0, node-fetch@^2.6.1:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
+
+node-fetch@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
+  integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
   dependencies:
     whatwg-url "^5.0.0"
 
@@ -3970,6 +3974,11 @@ qs@6.11.0, qs@^6.7.0:
   dependencies:
     side-channel "^1.0.4"
 
+qs@6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
+  integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
 qs@~6.5.2:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
@@ -4002,6 +4011,16 @@ raven@^2.6.4:
     stack-trace "0.0.10"
     timed-out "4.0.1"
     uuid "3.3.2"
+
+raw-body@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.4.0.tgz#a1ce6fb9c9bc356ca52e89256ab59059e13d0332"
+  integrity sha512-4Oz8DUIwdvoa5qMJelxipzi/iJIi40O5cGV1wNYp5hvZP8ZN0T+jiNkL0QepXs+EsQ9XJ8ipEDoiH70ySUJP3Q==
+  dependencies:
+    bytes "3.1.0"
+    http-errors "1.7.2"
+    iconv-lite "0.4.24"
+    unpipe "1.0.0"
 
 raw-body@2.5.1:
   version "2.5.1"
@@ -4817,7 +4836,7 @@ token-types@^4.1.1:
   dependencies:
     bolgia ">=2.7.4"
 
-tough-cookie@^2.3.1, tough-cookie@^2.3.3, tough-cookie@~2.5.0:
+tough-cookie@^2.3.1, tough-cookie@^2.3.3, tough-cookie@^2.5.0, tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
   integrity sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==
@@ -4869,7 +4888,7 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-is@~1.6.18:
+type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
   integrity sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
