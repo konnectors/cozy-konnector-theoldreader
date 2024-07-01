@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-theoldreader",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "svgo": "2.8.0",
     "ts-loader": "9.5.1",
     "typescript": "4.9.5",
-    "webpack": "5.91.0",
+    "webpack": "5.92.1",
     "webpack-cli": "4.10.0"
   }
 }
