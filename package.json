@@ -1,6 +1,6 @@
 {
   "name": "cozy-konnector-theoldreader",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "travisDeployKey": "./bin/generate_travis_deploy_key"
   },
   "dependencies": {
-    "cozy-konnector-libs": "5.11.0",
+    "cozy-konnector-libs": "5.12.0",
     "pdfjs": "2.5.3"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "@types/moment": "2.13.0",
     "copy-webpack-plugin": "12.0.2",
     "cozy-app-publish": "0.34.0",
-    "cozy-jobs-cli": "2.4.2",
+    "cozy-jobs-cli": "2.4.3",
     "eslint-config-cozy-app": "2.1.1",
     "git-directory-deploy": "1.5.1",
     "husky": "7.0.4",
