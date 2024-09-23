@@ -46,7 +46,7 @@
     "copy-webpack-plugin": "12.0.2",
     "cozy-app-publish": "0.34.0",
     "cozy-jobs-cli": "2.4.4",
-    "eslint-config-cozy-app": "2.1.1",
+    "eslint-config-cozy-app": "6.1.0",
     "git-directory-deploy": "1.5.1",
     "husky": "9.1.5",
     "svgo": "3.3.2",
