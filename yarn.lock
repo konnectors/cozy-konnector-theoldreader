@@ -1614,10 +1614,10 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-cozy-app@6.7.1:
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-cozy-app/-/eslint-config-cozy-app-6.7.1.tgz#2d5923bf3109d67a6b2a3b16b39724471748f40a"
-  integrity sha512-0HWVYMzqybgMzg/XU19AEtN+8udQH+laGF7PjCDCFiPHMRcyu6ECZQTmPnPQAxwvKvzjiivOXsgE/+iPi2mMLg==
+eslint-config-cozy-app@6.7.2:
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-cozy-app/-/eslint-config-cozy-app-6.7.2.tgz#fb58085bb396da6584c3a393b9de2be69fe93cbb"
+  integrity sha512-zwW7TtMmuYz6XWmDAsutZvRBNlH378iyEMnKDO7crTWUJN53BU3JyiRLrTxoU2k1EYI2FIVOzry1yievmI75Jg==
 
 eslint-scope@5.1.1:
   version "5.1.1"
