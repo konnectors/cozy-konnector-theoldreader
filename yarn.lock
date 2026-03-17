@@ -1003,16 +1003,16 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-cozy-app-publish@0.41.0:
-  version "0.41.0"
-  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.41.0.tgz#4276e1a10bfd92f8d2058f1d17e8c48d4412cadb"
-  integrity sha512-3lbn0yPG5b/Is59rZeTfweFjSU5VEz2C+a7fkox5+pOPprUL9JK319uT8bVXzkAtQezzcSVGvE4u71fsts1KHg==
+cozy-app-publish@0.44.1:
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/cozy-app-publish/-/cozy-app-publish-0.44.1.tgz#e20374bea525ac88a886bd9bf456911d6916db0c"
+  integrity sha512-hx3k/brrdssCac9aHxQ8i7qpyWcV4cHtYeCdLnDThnKVSYKTBYtAxPhcOW7Focl3QSYYi9unZ/U4r9OB9reRkw==
   dependencies:
     argparse "^2.0.1"
     chalk "^2.4.2"
     cross-spawn "^6.0.5"
     fs-extra "^7.0.1"
-    lodash "^4.17.19"
+    lodash "^4.17.21"
     node-fetch "^2.6.1"
     prompt "^1.0.0"
     request "^2.88.0"
